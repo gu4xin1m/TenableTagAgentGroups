@@ -4,7 +4,7 @@ An alternative to implement automatic agent tagging  based on agent groups in te
 
 ## Flow
 
-![Application Flow](FLOW.png)
+![Application Flow](flow.png)
 
 ## Requirements
 
@@ -42,7 +42,6 @@ python3 run.py
 #### Build the image
 
 ```
-cd Docker
 Docker build -t tag-tenable-agent-groups .
 ```
 #### Run
