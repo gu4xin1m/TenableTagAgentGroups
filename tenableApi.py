@@ -97,12 +97,15 @@ def getTagId(AgentgroupName):
     url = baseURL+endpoint
     response = requests.get(url, headers=headers)
     responseList = {}
-    responseJson = response.json()
-    responseList['uuid'] = responseJson["values"][0]['uuid']
-    responseList['category_name'] = responseJson["values"][0]['category_name']
-    responseList['value'] = responseJson["values"][0]['value']
-    return responseList
-
+    print(response.json)
+    try:
+        responseJson = response.json()
+        responseList['uuid'] = responseJson["values"][0]['uuid']
+        responseList['category_name'] = responseJson["values"][0]['category_name']
+        responseList['value'] = responseJson["values"][0]['value']
+        return responseList
+    except:
+        print("Could not find a matching tag category for agent group: {AgentGroupName}")
 
 def getTargetAssets(agentGroupId,assets):
     agentGroup = getAgentGroupDetail(agentGroupId)

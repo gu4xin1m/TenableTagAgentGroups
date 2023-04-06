@@ -17,9 +17,9 @@ for agentGroup in agent_groups:
         agentGroupName = agentGroupDetails['name']
         #Identify the tag name based on the Asset group Name
         tag = tenableApi.getTagId(agentGroupName)
-        
-        #Tag assets
-        print('[*] Applying tags for agent group: {}, Agents: {}'.format(agentGroupName,len(targets)))
-        tenableApi.tagAssets(tag,targets)
+        if tag:
+            #Tag assets
+            print('[*] Applying tags for agent group: {}, Agents: {}'.format(agentGroupName,len(targets)))
+            #tenableApi.tagAssets(tag,targets)
 
 
