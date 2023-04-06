@@ -13,6 +13,12 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(
 TENABLE_ACCESS_KEY = os.getenv('TENABLE_ACCESS_KEY')
 TENABLE_SECRET_KEY = os.getenv('TENABLE_SECRET_KEY')
 
+if not TENABLE_ACCESS_KEY and not TENABLE_SECRET_KEY:
+    print("Error: Could not load API keys from environment variables")
+    exit()
+
+
+
 
 headers = {
     "accept": "application/json",
@@ -97,7 +103,6 @@ def getTagId(AgentgroupName):
     url = baseURL+endpoint
     response = requests.get(url, headers=headers)
     responseList = {}
-    print(response.json)
     try:
         responseJson = response.json()
         responseList['uuid'] = responseJson["values"][0]['uuid']
@@ -105,7 +110,7 @@ def getTagId(AgentgroupName):
         responseList['value'] = responseJson["values"][0]['value']
         return responseList
     except:
-        print("Could not find a matching tag category for agent group: {AgentGroupName}")
+        print(f"Could not find a matching tag category for agent group: {AgentgroupName}")
 
 def getTargetAssets(agentGroupId,assets):
     agentGroup = getAgentGroupDetail(agentGroupId)

@@ -5,6 +5,7 @@ assets = tenableApi.getAssets(exportID,1)
 agent_groups =  tenableApi.listAgentGroups()
 
 
+print('[*] Looking for asset groups...')
 for agentGroup in agent_groups:
 
     #Get all information about the AG
@@ -20,6 +21,6 @@ for agentGroup in agent_groups:
         if tag:
             #Tag assets
             print('[*] Applying tags for agent group: {}, Agents: {}'.format(agentGroupName,len(targets)))
-            #tenableApi.tagAssets(tag,targets)
+            tenableApi.tagAssets(tag,targets)
 
 
