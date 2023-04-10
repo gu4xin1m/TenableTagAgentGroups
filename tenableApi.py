@@ -116,9 +116,9 @@ def getTargetAssets(agentGroupId,assets):
     agentGroup = getAgentGroupDetail(agentGroupId)
     assets_idlist = []
     for line in agentGroup['agents']:
-        agentName = line['name']
+        agentUuid = line['uuid'].replace('-','')
         for asset in assets:
-         if agentName in asset['agent_names']:
+         if agentUuid in asset['agent_uuid']:
             assets_idlist.append(asset['id'])
     
     return assets_idlist
@@ -134,3 +134,4 @@ def tagAssets(tagUuid:str,assets:list):
     url = baseURL+endpoint
     response = requests.post(url, headers=headers, json=payload)
     return response.json()
+
